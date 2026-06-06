@@ -59,26 +59,26 @@ Open [http://localhost:3000](http://localhost:3000) with your browser.
 
 ## 🛠️ Available Scripts
 
-| Command                | Description                        |
-| ---------------------- | ---------------------------------- |
-| `npm run dev`          | Development server (Turbopack)     |
-| `npm run build`        | Production build                   |
-| `npm start`           | Production server                  |
+| Command                | Description                            |
+| ---------------------- | -------------------------------------- |
+| `npm run dev`          | Development server (Turbopack)         |
+| `npm run build`        | Production build                       |
+| `npm start`            | Production server                      |
 | `npm run check`        | All checks (lint + format + typecheck) |
-| `npm run lint`         | ESLint check                       |
-| `npm run lint:fix`     | ESLint auto-fix                    |
-| `npm run typecheck`    | TypeScript type check              |
-| `npm run format`       | Prettier format                    |
-| `npm run format:check` | Prettier check                     |
+| `npm run lint`         | ESLint check                           |
+| `npm run lint:fix`     | ESLint auto-fix                        |
+| `npm run typecheck`    | TypeScript type check                  |
+| `npm run format`       | Prettier format                        |
+| `npm run format:check` | Prettier check                         |
 
 ## 🔌 API Endpoints
 
-| Endpoint           | Method | Description                     |
-| ------------------ | ------ | ------------------------------- |
-| `/api/nodes`       | GET    | List all node statuses          |
-| `/api/nodes/:name` | GET    | Get specific node status        |
-| `/health`          | GET    | Health check                    |
-| `/`                | POST   | JSON-RPC proxy (via Nginx)      |
+| Endpoint           | Method | Description                |
+| ------------------ | ------ | -------------------------- |
+| `/api/nodes`       | GET    | List all node statuses     |
+| `/api/nodes/:name` | GET    | Get specific node status   |
+| `/health`          | GET    | Health check               |
+| `/`                | POST   | JSON-RPC proxy (via Nginx) |
 
 ## 📁 Project Structure
 
@@ -113,9 +113,9 @@ public/
 
 ### Environment Variables
 
-| Variable | Description                              | Default |
-| -------- | ---------------------------------------- | ------- |
-| `PORT`   | Server port                              | `3000`  |
+| Variable | Description                                | Default |
+| -------- | ------------------------------------------ | ------- |
+| `PORT`   | Server port                                | `3000`  |
 | `NODES`  | Node config (JSON: `{"Name": "URL", ...}`) | None    |
 
 Example `.env`:

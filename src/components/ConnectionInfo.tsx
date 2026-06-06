@@ -97,11 +97,11 @@ export function ConnectionInfo() {
 
   if (loading) {
     return (
-      <div className="glass-card p-6 animate-fade-in">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center">
+      <div className="glass-card animate-fade-in p-6">
+        <div className="mb-6 flex items-center gap-3">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-green-500 to-teal-600">
             <svg
-              className="w-4 h-4 text-white"
+              className="h-4 w-4 text-white"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -114,28 +114,21 @@ export function ConnectionInfo() {
               />
             </svg>
           </div>
-          <h2 className="text-xl font-bold text-primary">Connection Endpoints</h2>
+          <h2 className="text-primary text-xl font-bold">Connection Endpoints</h2>
         </div>
         <div className="flex flex-col items-center justify-center space-y-4 py-12">
-          <div className="w-12 h-12 border-4 border-green-500 border-t-transparent rounded-full animate-spin"></div>
-          <div className="text-lg font-medium text-muted animate-pulse">
-            Checking Endpoints...
-          </div>
+          <div className="h-12 w-12 animate-spin rounded-full border-4 border-green-500 border-t-transparent"></div>
+          <div className="text-muted animate-pulse text-lg font-medium">Checking Endpoints...</div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="glass-card p-6 animate-fade-in">
-      <div className="flex items-center gap-3 mb-6">
-        <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center">
-          <svg
-            className="w-4 h-4 text-white"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
+    <div className="glass-card animate-fade-in p-6">
+      <div className="mb-6 flex items-center gap-3">
+        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-green-500 to-teal-600">
+          <svg className="h-4 w-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -144,16 +137,16 @@ export function ConnectionInfo() {
             />
           </svg>
         </div>
-        <h2 className="text-xl font-bold text-primary">Connection Endpoints</h2>
+        <h2 className="text-primary text-xl font-bold">Connection Endpoints</h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+      <div className="mb-6 grid grid-cols-1 gap-4 md:grid-cols-2">
         {/* RPC Endpoint */}
-        <div className="endpoint-card rounded-xl p-5 border transition-colors">
-          <div className="flex items-center justify-between mb-3">
-            <span className="inline-flex items-center gap-2 text-primary font-medium">
+        <div className="endpoint-card rounded-xl border p-5 transition-colors">
+          <div className="mb-3 flex items-center justify-between">
+            <span className="text-primary inline-flex items-center gap-2 font-medium">
               <svg
-                className="w-5 h-5 text-blue-400"
+                className="h-5 w-5 text-blue-400"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -169,24 +162,24 @@ export function ConnectionInfo() {
             </span>
             <span
               className={endpointStatus.rpc.isAlive ? 'status-online' : 'status-offline'}
-              style={{ padding: '4px 12px', borderRadius: '9999px', fontSize: '12px', fontWeight: 500 }}
+              style={{
+                padding: '4px 12px',
+                borderRadius: '9999px',
+                fontSize: '12px',
+                fontWeight: 500,
+              }}
             >
               {endpointStatus.rpc.isAlive ? 'Online' : 'Offline'}
             </span>
           </div>
-          <div className="code-block rounded-lg p-3 flex items-center justify-between group">
-            <code className="text-sm font-mono text-secondary">https://rpc.virbicoin.com</code>
+          <div className="code-block group flex items-center justify-between rounded-lg p-3">
+            <code className="text-secondary font-mono text-sm">https://rpc.virbicoin.com</code>
             <button
               onClick={() => navigator.clipboard.writeText('https://rpc.virbicoin.com')}
-              className="text-muted hover:text-blue-400 transition-colors p-1"
+              className="text-muted p-1 transition-colors hover:text-blue-400"
               title="Copy to clipboard"
             >
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
+              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -196,17 +189,15 @@ export function ConnectionInfo() {
               </svg>
             </button>
           </div>
-          <p className="text-xs text-muted mt-2">
-            Last checked: {endpointStatus.rpc.lastChecked}
-          </p>
+          <p className="text-muted mt-2 text-xs">Last checked: {endpointStatus.rpc.lastChecked}</p>
         </div>
 
         {/* WebSocket Endpoint */}
-        <div className="endpoint-card rounded-xl p-5 border transition-colors">
-          <div className="flex items-center justify-between mb-3">
-            <span className="inline-flex items-center gap-2 text-primary font-medium">
+        <div className="endpoint-card rounded-xl border p-5 transition-colors">
+          <div className="mb-3 flex items-center justify-between">
+            <span className="text-primary inline-flex items-center gap-2 font-medium">
               <svg
-                className="w-5 h-5 text-purple-400"
+                className="h-5 w-5 text-purple-400"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -222,24 +213,24 @@ export function ConnectionInfo() {
             </span>
             <span
               className={endpointStatus.websocket.isAlive ? 'status-online' : 'status-offline'}
-              style={{ padding: '4px 12px', borderRadius: '9999px', fontSize: '12px', fontWeight: 500 }}
+              style={{
+                padding: '4px 12px',
+                borderRadius: '9999px',
+                fontSize: '12px',
+                fontWeight: 500,
+              }}
             >
               {endpointStatus.websocket.isAlive ? 'Online' : 'Offline'}
             </span>
           </div>
-          <div className="code-block rounded-lg p-3 flex items-center justify-between group">
-            <code className="text-sm font-mono text-secondary">wss://ws.virbicoin.com</code>
+          <div className="code-block group flex items-center justify-between rounded-lg p-3">
+            <code className="text-secondary font-mono text-sm">wss://ws.virbicoin.com</code>
             <button
               onClick={() => navigator.clipboard.writeText('wss://ws.virbicoin.com')}
-              className="text-muted hover:text-purple-400 transition-colors p-1"
+              className="text-muted p-1 transition-colors hover:text-purple-400"
               title="Copy to clipboard"
             >
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
+              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -249,16 +240,16 @@ export function ConnectionInfo() {
               </svg>
             </button>
           </div>
-          <p className="text-xs text-muted mt-2">
+          <p className="text-muted mt-2 text-xs">
             Last checked: {endpointStatus.websocket.lastChecked}
           </p>
         </div>
       </div>
 
       <div className="info-banner rounded-lg p-4">
-        <p className="text-sm text-secondary flex items-start gap-2">
+        <p className="text-secondary flex items-start gap-2 text-sm">
           <svg
-            className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5"
+            className="mt-0.5 h-5 w-5 flex-shrink-0 text-blue-400"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"

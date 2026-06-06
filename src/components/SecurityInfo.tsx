@@ -1,14 +1,9 @@
 export function SecurityInfo() {
   return (
-    <div className="glass-card p-6 animate-fade-in h-full">
-      <div className="flex items-center gap-3 mb-5">
-        <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-red-500 to-pink-600 flex items-center justify-center">
-          <svg
-            className="w-4 h-4 text-white"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
+    <div className="glass-card animate-fade-in h-full p-6">
+      <div className="mb-5 flex items-center gap-3">
+        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-red-500 to-pink-600">
+          <svg className="h-4 w-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -17,58 +12,43 @@ export function SecurityInfo() {
             />
           </svg>
         </div>
-        <h2 className="text-lg font-bold text-primary">Security Tips</h2>
+        <h2 className="text-primary text-lg font-bold">Security Tips</h2>
       </div>
       <ul className="space-y-3">
-        <li className="flex items-start gap-3 text-secondary text-sm">
+        <li className="text-secondary flex items-start gap-3 text-sm">
           <svg
-            className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"
+            className="mt-0.5 h-5 w-5 flex-shrink-0 text-green-500"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M5 13l4 4L19 7"
-            />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
           </svg>
           <span>
             Always verify URLs start with{' '}
-            <code className="text-blue-500 bg-blue-500/10 px-1 rounded">https://</code> or{' '}
-            <code className="text-purple-500 bg-purple-500/10 px-1 rounded">wss://</code>
+            <code className="rounded bg-blue-500/10 px-1 text-blue-500">https://</code> or{' '}
+            <code className="rounded bg-purple-500/10 px-1 text-purple-500">wss://</code>
           </span>
         </li>
-        <li className="flex items-start gap-3 text-secondary text-sm">
+        <li className="text-secondary flex items-start gap-3 text-sm">
           <svg
-            className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"
+            className="mt-0.5 h-5 w-5 flex-shrink-0 text-green-500"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M5 13l4 4L19 7"
-            />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
           </svg>
           <span>Keep your wallet software updated to the latest version.</span>
         </li>
-        <li className="flex items-start gap-3 text-secondary text-sm">
+        <li className="text-secondary flex items-start gap-3 text-sm">
           <svg
-            className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"
+            className="mt-0.5 h-5 w-5 flex-shrink-0 text-green-500"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M5 13l4 4L19 7"
-            />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
           </svg>
           <span>Never share your private keys or seed phrases with anyone.</span>
         </li>

@@ -86,9 +86,7 @@ export function NodeStatus() {
 
           if (!res.ok) {
             if (res.status === 502 || res.status === 503) {
-              throw new Error(
-                `Node ${node.name} is temporarily unavailable (${res.status})`
-              );
+              throw new Error(`Node ${node.name} is temporarily unavailable (${res.status})`);
             }
             throw new Error(`Failed to fetch data for node ${node.name}: ${res.status}`);
           }
@@ -167,11 +165,11 @@ export function NodeStatus() {
 
   if (loading) {
     return (
-      <div className="glass-card p-6 animate-fade-in">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+      <div className="glass-card animate-fade-in p-6">
+        <div className="mb-6 flex items-center gap-3">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-purple-600">
             <svg
-              className="w-4 h-4 text-white"
+              className="h-4 w-4 text-white"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -184,28 +182,21 @@ export function NodeStatus() {
               />
             </svg>
           </div>
-          <h2 className="text-xl font-bold text-primary">Node Status</h2>
+          <h2 className="text-primary text-xl font-bold">Node Status</h2>
         </div>
         <div className="flex flex-col items-center justify-center space-y-4 py-12">
-          <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-          <div className="text-lg font-medium text-muted animate-pulse">
-            Loading Node Status...
-          </div>
+          <div className="h-12 w-12 animate-spin rounded-full border-4 border-blue-500 border-t-transparent"></div>
+          <div className="text-muted animate-pulse text-lg font-medium">Loading Node Status...</div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="glass-card p-6 animate-fade-in">
-      <div className="flex items-center gap-3 mb-6">
-        <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-          <svg
-            className="w-4 h-4 text-white"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
+    <div className="glass-card animate-fade-in p-6">
+      <div className="mb-6 flex items-center gap-3">
+        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-purple-600">
+          <svg className="h-4 w-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -214,7 +205,7 @@ export function NodeStatus() {
             />
           </svg>
         </div>
-        <h2 className="text-xl font-bold text-primary">Node Status</h2>
+        <h2 className="text-primary text-xl font-bold">Node Status</h2>
       </div>
       <div className="overflow-x-auto">
         <table className="data-table">
@@ -234,34 +225,32 @@ export function NodeStatus() {
                 <tr key={node.id}>
                   <td>
                     <span className="inline-flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-500"></span>
-                      <span className="font-mono font-medium text-primary">{node.name}</span>
+                      <span className="h-2 w-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-500"></span>
+                      <span className="text-primary font-mono font-medium">{node.name}</span>
                     </span>
                   </td>
                   <td>
                     {statusData[node.id]?.isServerRunning === null ? (
-                      <span className="status-loading inline-flex items-center px-3 py-1 rounded-full text-xs font-medium">
+                      <span className="status-loading inline-flex items-center rounded-full px-3 py-1 text-xs font-medium">
                         Loading...
                       </span>
                     ) : statusData[node.id]?.isServerRunning ? (
-                      <span className="status-online inline-flex items-center px-3 py-1 rounded-full text-xs font-medium">
-                        <span className="w-1.5 h-1.5 rounded-full bg-green-400 mr-1.5 animate-pulse"></span>
+                      <span className="status-online inline-flex items-center rounded-full px-3 py-1 text-xs font-medium">
+                        <span className="mr-1.5 h-1.5 w-1.5 animate-pulse rounded-full bg-green-400"></span>
                         Online
                       </span>
                     ) : (
-                      <span className="status-offline inline-flex items-center px-3 py-1 rounded-full text-xs font-medium">
-                        <span className="w-1.5 h-1.5 rounded-full bg-red-400 mr-1.5"></span>
+                      <span className="status-offline inline-flex items-center rounded-full px-3 py-1 text-xs font-medium">
+                        <span className="mr-1.5 h-1.5 w-1.5 rounded-full bg-red-400"></span>
                         Offline
                       </span>
                     )}
                   </td>
-                  <td className="font-mono text-secondary">
+                  <td className="text-secondary font-mono">
                     {statusData[node.id]?.blockHeight?.toLocaleString() ?? '—'}
                   </td>
-                  <td className="font-mono text-secondary">
-                    {statusData[node.id]?.peers ?? '—'}
-                  </td>
-                  <td className="font-mono text-secondary whitespace-nowrap">
+                  <td className="text-secondary font-mono">{statusData[node.id]?.peers ?? '—'}</td>
+                  <td className="text-secondary font-mono whitespace-nowrap">
                     {statusData[node.id]?.clientVersion ?? '—'}
                   </td>
                   <td className="text-muted text-sm whitespace-nowrap">
@@ -271,7 +260,7 @@ export function NodeStatus() {
               ))
             ) : (
               <tr>
-                <td colSpan={6} className="text-center text-muted py-8">
+                <td colSpan={6} className="text-muted py-8 text-center">
                   No nodes available
                 </td>
               </tr>

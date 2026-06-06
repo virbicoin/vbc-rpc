@@ -95,8 +95,7 @@ export async function GET(
         ? parseInt(responses[2].value.result, 16)
         : 0;
 
-    const netListeningResponse =
-      responses[3]?.status === 'fulfilled' ? responses[3].value : null;
+    const netListeningResponse = responses[3]?.status === 'fulfilled' ? responses[3].value : null;
     const netListeningAvailable = netListeningResponse && !netListeningResponse.error;
     const netListening = netListeningAvailable && netListeningResponse.result === true;
 

@@ -1,14 +1,9 @@
 export function UsageGuide() {
   return (
-    <div className="glass-card p-6 animate-fade-in h-full">
-      <div className="flex items-center gap-3 mb-5">
-        <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center">
-          <svg
-            className="w-4 h-4 text-white"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
+    <div className="glass-card animate-fade-in h-full p-6">
+      <div className="mb-5 flex items-center gap-3">
+        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-amber-500 to-orange-600">
+          <svg className="h-4 w-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -17,23 +12,23 @@ export function UsageGuide() {
             />
           </svg>
         </div>
-        <h2 className="text-lg font-bold text-primary">Usage Guide</h2>
+        <h2 className="text-primary text-lg font-bold">Usage Guide</h2>
       </div>
       <ul className="space-y-3">
-        <li className="flex items-start gap-3 text-secondary text-sm">
-          <span className="w-5 h-5 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center flex-shrink-0 text-xs font-bold mt-0.5">
+        <li className="text-secondary flex items-start gap-3 text-sm">
+          <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-amber-500/20 text-xs font-bold text-amber-400">
             1
           </span>
           <span>Click on the provided endpoint URL to copy it to your clipboard.</span>
         </li>
-        <li className="flex items-start gap-3 text-secondary text-sm">
-          <span className="w-5 h-5 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center flex-shrink-0 text-xs font-bold mt-0.5">
+        <li className="text-secondary flex items-start gap-3 text-sm">
+          <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-amber-500/20 text-xs font-bold text-amber-400">
             2
           </span>
           <span>Configure your wallet or dApp with the RPC endpoint.</span>
         </li>
-        <li className="flex items-start gap-3 text-secondary text-sm">
-          <span className="w-5 h-5 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center flex-shrink-0 text-xs font-bold mt-0.5">
+        <li className="text-secondary flex items-start gap-3 text-sm">
+          <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-amber-500/20 text-xs font-bold text-amber-400">
             3
           </span>
           <span>For real-time updates, use the WebSocket endpoint.</span>

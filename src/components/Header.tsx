@@ -5,8 +5,8 @@ import { ThemeToggle } from '@/components/ThemeToggle';
 
 export function Header() {
   return (
-    <header className="w-full py-8 header-border">
-      <div className="max-w-screen-lg mx-auto px-4">
+    <header className="header-border w-full py-8">
+      <div className="mx-auto max-w-screen-lg px-4">
         <div className="flex items-center justify-between">
           <div className="flex-1" />
           <div className="flex items-center gap-3">
@@ -18,13 +18,13 @@ export function Header() {
               className="drop-shadow-lg"
               priority
             />
-            <h1 className="text-3xl md:text-4xl font-bold gradient-text">VirBiCoin Node</h1>
+            <h1 className="gradient-text text-3xl font-bold md:text-4xl">VirBiCoin Node</h1>
           </div>
-          <div className="flex-1 flex justify-end">
+          <div className="flex flex-1 justify-end">
             <ThemeToggle />
           </div>
         </div>
-        <p className="text-center subtitle-text mt-2 text-sm">
+        <p className="subtitle-text mt-2 text-center text-sm">
           Real-time blockchain node monitoring dashboard
         </p>
       </div>

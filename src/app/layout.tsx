@@ -30,11 +30,11 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ThemeProvider>
-          <div className="min-h-screen flex flex-col">
+          <div className="flex min-h-screen flex-col">
             <Header />
-            <main className="flex-1 max-w-screen-lg mx-auto px-4 w-full py-6">{children}</main>
-            <footer className="w-full footer-border mt-auto">
-              <div className="max-w-screen-lg mx-auto px-4 text-center py-6">
+            <main className="mx-auto w-full max-w-screen-lg flex-1 px-4 py-6">{children}</main>
+            <footer className="footer-border mt-auto w-full">
+              <div className="mx-auto max-w-screen-lg px-4 py-6 text-center">
                 <p className="footer-text text-sm">
                   &copy; 2024-{currentYear} VirBiCoin Foundation. All Rights Reserved.
                 </p>
