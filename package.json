@@ -1,5 +1,5 @@
 {
-  "name": "rpc.virbicoin.com",
+  "name": "vbc-rpc",
   "version": "0.3.0",
   "private": true,
   "type": "module",
@@ -15,7 +15,8 @@
     "lint:fix": "eslint . --fix",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "prepare": "git config core.hooksPath .githooks || true"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.3.0",

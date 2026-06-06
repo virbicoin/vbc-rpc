@@ -71,6 +71,12 @@ Open [http://localhost:3000](http://localhost:3000) with your browser.
 | `npm run format`       | Prettier format                        |
 | `npm run format:check` | Prettier check                         |
 
+> **Git pre-commit hook** — Running `npm install` configures a Git hook
+> (`.githooks/pre-commit`) that automatically runs `npm run check` before each
+> commit, so formatting and lint issues are caught locally before CI. Use
+> `npm run format` / `npm run lint:fix` to auto-fix, or `git commit --no-verify`
+> to bypass in an emergency.
+
 ## 🔌 API Endpoints
 
 | Endpoint           | Method | Description                |

@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+# Pre-commit hook: コミット前に CI と同じチェック (npm run check) を実行する。
+# 有効化: package.json の "prepare" スクリプトが core.hooksPath を .githooks に設定する。
+
+echo "▶ pre-commit: 'npm run check' を実行中..."
+
+npm run check
+status=$?
+
+if [ "$status" -ne 0 ]; then
+  echo ""
+  echo "✖ チェックに失敗したためコミットを中止しました。"
+  echo "  → 多くは 'npm run format' と 'npm run lint:fix' で自動修正できます。"
+  exit 1
+fi
+
+echo "✔ pre-commit: チェックに成功しました。"
