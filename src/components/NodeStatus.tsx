@@ -42,8 +42,8 @@ export function NodeStatus() {
 
         const res = await fetch('/api/nodes');
         if (!res.ok) throw new Error(`Failed to fetch nodes: ${res.status}`);
-        const data = await res.json();
-        const formattedNodes = Object.keys(data).map((name, index) => ({
+        const names: string[] = await res.json();
+        const formattedNodes = names.map((name, index) => ({
           id: index + 1,
           name,
         }));
@@ -141,27 +141,6 @@ export function NodeStatus() {
 
     fetchAllNodes();
   }, [nodes, locale, timeZone]);
-
-  useEffect(() => {
-    const fetchHealth = async () => {
-      try {
-        const res = await fetch('/health');
-        const data = await res.json();
-        console.log('Health:', data.status);
-        console.log('Hostname:', data.hostname);
-        const healthTime = new Date(data.time);
-        const formattedHealthTime = new Intl.DateTimeFormat(locale, {
-          dateStyle: 'short',
-          timeStyle: 'long',
-          timeZone,
-        }).format(healthTime);
-        console.log('Time:', formattedHealthTime);
-      } catch (error) {
-        console.error('Health check failed:', error);
-      }
-    };
-    fetchHealth();
-  }, [locale, timeZone]);
 
   if (loading) {
     return (
