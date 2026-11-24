@@ -55,7 +55,7 @@ export async function GET(
   { params }: { params: Promise<{ NODE_NAME: string }> }
 ) {
   const { NODE_NAME: nodeName } = await params;
-  const nodeUrl = nodes[nodeName];
+  const nodeUrl = Object.hasOwn(nodes, nodeName) ? nodes[nodeName] : undefined;
 
   if (!nodeUrl) {
     return NextResponse.json({ error: 'Node not found' }, { status: 404 });

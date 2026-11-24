@@ -81,7 +81,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser.
 
 | Endpoint           | Method | Description                |
 | ------------------ | ------ | -------------------------- |
-| `/api/nodes`       | GET    | List all node statuses     |
+| `/api/nodes`       | GET    | List node names            |
 | `/api/nodes/:name` | GET    | Get specific node status   |
 | `/health`          | GET    | Health check               |
 | `/`                | POST   | JSON-RPC proxy (via Nginx) |
