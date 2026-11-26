@@ -144,6 +144,15 @@ PORT=4000 npm start
 server {
     server_name rpc.virbicoin.com;
 
+    # Browser wallets and dApps call the RPC cross-origin: answer the preflight here and send
+    # the CORS headers on every response (the node's own headers are replaced)
+    proxy_hide_header Access-Control-Allow-Origin;
+    proxy_hide_header Access-Control-Allow-Methods;
+    proxy_hide_header Access-Control-Allow-Headers;
+    add_header Access-Control-Allow-Origin "*" always;
+    add_header Access-Control-Allow-Methods "GET, POST, OPTIONS" always;
+    add_header Access-Control-Allow-Headers "Content-Type, Authorization" always;
+
     # Proxy _next/ static assets to Next.js
     location /_next/ {
         proxy_pass http://127.0.0.1:4000;
@@ -151,6 +160,9 @@ server {
     }
 
     location / {
+        if ($request_method = OPTIONS) {
+            return 204;
+        }
         # JSON-RPC (POST) → VirBiCoin node
         if ($request_method = POST) {
             proxy_pass http://127.0.0.1:8329;
@@ -162,6 +174,10 @@ server {
     }
 }
 ```
+
+The production hosts also send `/health` to a separate node health check used for DNS
+failover (maintained outside this repository); the app's own `/health` route reports only
+that the dashboard is up.
 
 ## 📦 Tech Stack
 
