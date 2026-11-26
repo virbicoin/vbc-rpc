@@ -4,7 +4,7 @@
 
 ## プロジェクト概要
 
-VirBiCoin RPC ノードステータスダッシュボード — 暗号通貨ノードの稼働状況をリアルタイムで表示し、JSON-RPC プロキシエンドポイントを提供する Next.js アプリケーションです。
+VirBiCoin RPC ノードステータスダッシュボード — 各ノードの稼働状況をリアルタイムで表示し、公開 RPC / WebSocket の使い方を案内する Next.js アプリケーションです。JSON-RPC の POST は nginx がノード（8329）へ中継し、このアプリを通りません（「デプロイ」参照）。
 
 ## 技術スタック
 
@@ -13,7 +13,7 @@ VirBiCoin RPC ノードステータスダッシュボード — 暗号通貨ノ�
 - **スタイリング**: Tailwind CSS 4
 - **Lint**: ESLint 10（`typescript-eslint` + `eslint-config-prettier`）
 - **フォーマッタ**: Prettier（`prettier-plugin-tailwindcss`）
-- **ランタイム**: Node.js 20+
+- **ランタイム**: Node.js 20.19+ / 22.13+ / 24（`engines`。Next.js 16 と ESLint 10 の要件。`.nvmrc` と CI は 24）
 
 ## よく使うコマンド
 
@@ -121,22 +121,25 @@ src/
 
 VirBiCoin エコシステムは以下のリポジトリで構成されています:
 
-| リポジトリ                 | 役割                                             | ローカルパス        | URL                                                                                |
-| -------------------------- | ------------------------------------------------ | ------------------- | ---------------------------------------------------------------------------------- |
-| **virbicoin.com**          | 公式 Web サイト（メインサイト）                  | `../virbicoin.com`  | [github.com/virbicoin/virbicoin.com](https://github.com/virbicoin/virbicoin.com)   |
-| **go-virbicoin**           | メインクライアント（Gvbc, Go 実装）              | `../go-virbicoin`   | [github.com/virbicoin/go-virbicoin](https://github.com/virbicoin/go-virbicoin)     |
-| **open-virbicoin**         | Rust クライアント（Ovbc, OpenEthereum フォーク） | `../open-virbicoin` | [github.com/virbicoin/open-virbicoin](https://github.com/virbicoin/open-virbicoin) |
-| **vbc-stats**              | ネットワーク統計ダッシュボード                   | `../vbc-stats`      | [github.com/virbicoin/vbc-stats](https://github.com/virbicoin/vbc-stats)           |
-| **vbc-explorer**           | ブロックチェーンエクスプローラー                 | `../vbc-explorer`   | [github.com/virbicoin/vbc-explorer](https://github.com/virbicoin/vbc-explorer)     |
-| **vbc-pool**               | マイニングプール                                 | `../vbc-pool`       | [github.com/virbicoin/vbc-pool](https://github.com/virbicoin/vbc-pool)             |
-| **vbc-rpc** ← 本リポジトリ | RPC ノードステータス & JSON-RPC プロキシ         | `../vbc-rpc`        | [github.com/virbicoin/vbc-rpc](https://github.com/virbicoin/vbc-rpc)               |
-| **vbc-hash**               | Ethash アルゴリズム実装（C/Go バインディング）   | `../vbc-hash`       | [github.com/virbicoin/vbc-hash](https://github.com/virbicoin/vbc-hash)             |
+| リポジトリ                 | 役割                                                                   | ローカルパス        | URL                                                                                |
+| -------------------------- | ---------------------------------------------------------------------- | ------------------- | ---------------------------------------------------------------------------------- |
+| **virbicoin.com**          | 公式 Web サイト（メインサイト。private）                               | `../virbicoin.com`  | [github.com/virbicoin/virbicoin.com](https://github.com/virbicoin/virbicoin.com)   |
+| **go-virbicoin**           | メインクライアント（Gvbc, Go 実装）                                    | `../go-virbicoin`   | [github.com/virbicoin/go-virbicoin](https://github.com/virbicoin/go-virbicoin)     |
+| **open-virbicoin**         | Rust クライアント（Ovbc, OpenEthereum フォーク）                       | `../open-virbicoin` | [github.com/virbicoin/open-virbicoin](https://github.com/virbicoin/open-virbicoin) |
+| **vbc-explorer**           | ブロックチェーンエクスプローラー（DEX・Launchpad・ブリッジ画面を含む） | `../vbc-explorer`   | [github.com/virbicoin/vbc-explorer](https://github.com/virbicoin/vbc-explorer)     |
+| **vbc-stats**              | ネットワーク統計ダッシュボード                                         | `../vbc-stats`      | [github.com/virbicoin/vbc-stats](https://github.com/virbicoin/vbc-stats)           |
+| **vbc-stats-api**          | VBC Stats 用ノードレポーター（組み込みレポーターのない Ovbc 向け）     | `../vbc-stats-api`  | [github.com/virbicoin/vbc-stats-api](https://github.com/virbicoin/vbc-stats-api)   |
+| **vbc-pool**               | マイニングプール                                                       | `../vbc-pool`       | [github.com/virbicoin/vbc-pool](https://github.com/virbicoin/vbc-pool)             |
+| **vbc-rpc** ← 本リポジトリ | RPC ノードステータスページ（公開 RPC・WebSocket の案内）               | `../vbc-rpc`        | [github.com/virbicoin/vbc-rpc](https://github.com/virbicoin/vbc-rpc)               |
+| **vbc-hash**               | Ethash アルゴリズム実装（C/Go バインディング）                         | `../vbc-hash`       | [github.com/virbicoin/vbc-hash](https://github.com/virbicoin/vbc-hash)             |
 
 ### 依存関係
 
-- **open-virbicoin**: go-virbicoin（Gvbc）と同じ VirBiCoin ネットワーク（chainId 329）に接続する代替クライアント（Ovbc, Rust 実装）
-
-- **vbc-rpc** → **go-virbicoin**: RPC プロキシが Gvbc ノードにリクエストを中継
-- **vbc-stats** → **go-virbicoin**: Gvbc ノードが eth-netstats-client プロトコルでブロック/統計データを送信
-- **vbc-explorer** → **go-virbicoin**: JSON-RPC 経由でブロックチェーンデータを取得
-- **vbc-pool** → **go-virbicoin**: マイニングプールが Gvbc ノードから作業を取得
+- **go-virbicoin** と **open-virbicoin**: 同じ VirBiCoin ネットワーク（chainId 329）の 2 つのクライアント実装（Gvbc は Go、Ovbc は Rust）。報酬・フォークブロックなどコンセンサスに関わる変更は必ず両方に同時に入れる
+- **vbc-explorer** → ノードの JSON-RPC（Gvbc / Ovbc）。内部取引の索引は Parity 形式の `trace_transaction` を使うため Ovbc が必要（本番の explorer は Ovbc の IPC ソケットを読む）
+- **vbc-stats** ← Gvbc は組み込みの ethstats レポーター（`--ethstats`）で直接報告し、Ovbc は **vbc-stats-api** を介して報告する
+- **vbc-pool** → ノードの JSON-RPC（Gvbc / Ovbc。本番は両方）から作業を取得し、ブロックの確定と支払いを行う。シェアの検証は `proxy/miner.go` の純 Go 実装で、vbc-hash には依存しない
+- **vbc-rpc** → 各ノードの JSON-RPC（8329）に状態を問い合わせるだけ。公開 RPC（rpc.virbicoin.com）への POST は nginx がノードへ中継し、このアプリを通らない
+- **vbc-hash**: このワークスペースのどのリポジトリも import していない（Gvbc は `consensus/ethash`、vbc-pool は `proxy/miner.go` の自前実装）
+- **virbicoin.com**: 静的サイト（他リポジトリへのリンクのみ）
+- 公開リポジトリなので、private のリポジトリはこの表に載せていない（virbicoin.com は公開 Web サイトのソースとして載せる）。公開 README からは virbicoin.com の GitHub ではなく Web サイト（https://www.virbicoin.com）にリンクする

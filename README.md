@@ -25,7 +25,7 @@
   <img src="https://img.shields.io/badge/TypeScript-6-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript">
   <img src="https://img.shields.io/badge/Tailwind-4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" alt="Tailwind CSS">
   <img src="https://img.shields.io/badge/ESLint-10-4B32C3?style=flat-square&logo=eslint&logoColor=white" alt="ESLint">
-  <img src="https://img.shields.io/badge/Node.js-≥20-339933?style=flat-square&logo=node.js&logoColor=white" alt="Node.js">
+  <img src="https://img.shields.io/badge/Node.js-≥20.19-339933?style=flat-square&logo=node.js&logoColor=white" alt="Node.js">
   <a href="https://opensource.org/licenses/MIT">
     <img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square" alt="License: MIT">
   </a>
@@ -36,7 +36,7 @@
 ## ✨ Features
 
 - 🖥️ **Node Status Display** — Real-time block height, peer count, and version info
-- 🌐 **JSON-RPC Proxy** — Relays POST requests to VirBiCoin nodes
+- 🌐 **JSON-RPC Endpoint** — With the Nginx setup below, POST requests go straight to a VirBiCoin node (not through this app)
 - 🌙 **Dark/Light Theme** — System preference detection with manual toggle
 - ⚡ **Fast Rendering** — Next.js App Router + Turbopack
 - 📱 **Responsive** — Mobile-friendly dashboard UI
